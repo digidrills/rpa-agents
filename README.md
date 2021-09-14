@@ -1,6 +1,4 @@
-# RPA Agents.
-
-## RPA, Power Automate, Virtual Agent related work.
+# RPA Agents - RPA, Power Automate, Virtual Agent related work.
 
 ### MSAL Authentication
 
