@@ -1,56 +1,119 @@
 {
-  "properties": {
-    "connectionReferences": {},
-    "definition": {
-      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "$authentication": { "defaultValue": {}, "type": "SecureObject" }
-      },
-      "triggers": {
-        "manual": {
-          "type": "Request",
-          "kind": "VirtualAgent",
-          "inputs": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "text": {
-                  "title": "folder",
-                  "type": "string",
-                  "x-ms-dynamically-added": true,
-                  "description": "Enter an input",
-                  "x-ms-content-hint": "TEXT"
-                }
-              },
-              "required": ["text"]
+   "properties":{
+      "connectionReferences":{
+         "shared_azureeventgrid":{
+            "runtimeSource":"embedded",
+            "connection":{
+               "connectionReferenceLogicalName":"new_sharedazureeventgrid_eb194"
+            },
+            "api":{
+               "name":"shared_azureeventgrid"
             }
-          }
-        }
+         }
       },
-      "actions": {
-        "Return_value(s)_to_Power_Virtual_Agents": {
-          "runAfter": { "HTTP": ["Succeeded"] },
-          "type": "Response",
-          "kind": "VirtualAgent",
-          "inputs": {
-            "statusCode": 200,
-            "body": {},
-            "schema": { "type": "object", "properties": {} }
-          }
-        },
-        "HTTP": {
-          "runAfter": {},
-          "type": "Http",
-          "inputs": {
-            "method": "POST",
-            "uri": "https://forms-entities.azurewebsites.net/api/orchestrators/FormsOrch?code=Fx39svIrxAmULHmFEi2nnviOi96rvD/Cd8uF/7tkxhYaOtjpQcrxFw==",
-            "body": { "path": "/Hello/@{triggerBody()['text']}" }
-          }
-        }
-      },
-      "outputs": {}
-    }
-  },
-  "schemaVersion": "1.0.0.0"
+      "definition":{
+         "$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+         "contentVersion":"1.0.0.0",
+         "parameters":{
+            "$connections":{
+               "defaultValue":{
+                  
+               },
+               "type":"Object"
+            },
+            "$authentication":{
+               "defaultValue":{
+                  
+               },
+               "type":"SecureObject"
+            }
+         },
+         "triggers":{
+            "manual":{
+               "type":"Request",
+               "kind":"VirtualAgent",
+               "inputs":{
+                  "schema":{
+                     "type":"object",
+                     "properties":{
+                        "text":{
+                           "title":"folder",
+                           "type":"string",
+                           "x-ms-dynamically-added":true,
+                           "description":"Enter an input",
+                           "x-ms-content-hint":"TEXT"
+                        }
+                     },
+                     "required":[
+                        "text"
+                     ]
+                  }
+               }
+            }
+         },
+         "actions":{
+            "HTTP":{
+               "runAfter":{
+                  
+               },
+               "type":"Http",
+               "inputs":{
+                  "method":"POST",
+                  "uri":"https://forms-entities.azurewebsites.net/api/orchestrators/FormsOrch?code=Fx39svIrxAmULHmFEi2nnviOi96rvD/Cd8uF/7tkxhYaOtjpQcrxFw==",
+                  "body":{
+                     "path":"/Hello/@{triggerBody()['text']}"
+                  }
+               }
+            },
+            "When_a_resource_event_occurs":{
+               "runAfter":{
+                  
+               },
+               "type":"OpenApiConnectionWebhook",
+               "inputs":{
+                  "host":{
+                     "connectionName":"shared_azureeventgrid",
+                     "operationId":"CreateSubscription",
+                     "apiId":"/providers/Microsoft.PowerApps/apis/shared_azureeventgrid"
+                  },
+                  "parameters":{
+                     "subscriptionId":"70fb90d6-a48f-4384-8007-3c61dbc71a53",
+                     "resourceType":"Microsoft.EventGrid.Topics",
+                     "body/properties/topic":"/subscriptions/70fb90d6-a48f-4384-8007-3c61dbc71a53/resourceGroups/mltrainingtrial/providers/Microsoft.EventGrid/topics/eventgridcustomtrial"
+                  },
+                  "authentication":"@parameters('$authentication')"
+               }
+            },
+            "Return_value(s)_to_Power_Virtual_Agents":{
+               "runAfter":{
+                  "When_a_resource_event_occurs":[
+                     "Succeeded"
+                  ]
+               },
+               "type":"Response",
+               "kind":"VirtualAgent",
+               "inputs":{
+                  "statusCode":200,
+                  "body":{
+                     "response":"All your files have been processed!\nThanks for using this bot!"
+                  },
+                  "schema":{
+                     "type":"object",
+                     "properties":{
+                        "response":{
+                           "title":"Response",
+                           "x-ms-dynamically-added":true,
+                           "type":"string"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "outputs":{
+            
+         }
+      }
+   },
+   "schemaVersion":"1.0.0.0"
 }
