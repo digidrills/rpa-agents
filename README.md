@@ -2,7 +2,7 @@
 
 ### MSAL Authentication
 
-Sample code with instructions on how to Authenticate with the Microsoft Graph API using MSAL (MicroSoft Authentication Library)
+Sample code with instructions on how to Authenticate with the Microsoft Graph API using MSAL (Microsoft Authentication Library)
 
 ### Power Automate
 
