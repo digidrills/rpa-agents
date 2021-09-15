@@ -1,1 +1,43 @@
-{"$schema":"https://schemas.botframework.com/schemas/skills/v2.2/skill-manifest.json","$id":"new_bot_3b24d42365354e55b34fda96f81343fe","name":"Test_Bot","version":"2021-09-13T06:42:31.9616086Z","description":"Power Virtual Agents manifest","publisherName":"Using Power Virtual Agents","privacyUrl":"https://go.microsoft.com/fwlink/?linkid=2138950","iconUrl":"https://bot-framework.azureedge.net/bot-icons-v1/3b24d423-6535-4e55-b34f-da96f81343fe_6Yz4GG12p2JK6bF5gjCVi9NN9dA6ZREHa4oa43zBYC3dqA9Y.png","endpoints":[{"name":"Power Virtual Agents Skill PROD","protocol":"BotFrameworkV3","description":"PROD","endpointUrl":"https://powervaengine.in-il101.gateway.prod.island.powerapps.com/api/runtime/environments/Default-26afc1b1-8393-439d-aa1a-483105d77dc3/bots/new_bot_3b24d42365354e55b34fda96f81343fe/messages","msAppId":"a627e2af-94d3-40d1-be50-76a5958fdc36"}],"activities":{"message":{"type":"message","description":"Message activity types"}},"dispatchModels":{"languages":{"en":[{"name":"Power Virtual Agents Skill LU English","contentType":"application/lu","url":"intents.lu","description":"English:en language model for the skill"}]},"intents":["Test-new_topic_253645ff6ea34256a2f75d24bf95be6a","Office Timings-new_topic_3b24d42365354e55b34fda96f81343fe_33d5123770ba4daeafae51b361ddc80a","OTP2-new_topic_7ca6f76fc3ae453a988a237cd477bf2a","OneDrive-new_topic_1ab00fe01ef84901b5c099f8e9a01986"]}}
+{
+   "$schema":"https://schemas.botframework.com/schemas/skills/v2.2/skill-manifest.json",
+   "$id":"new_bot_3b24d42365354e55b34fda96f81343fe",
+   "name":"Test_Bot",
+   "version":"2021-09-13T06:42:31.9616086Z",
+   "description":"Power Virtual Agents manifest",
+   "publisherName":"Using Power Virtual Agents",
+   "privacyUrl":"https://go.microsoft.com/fwlink/?linkid=2138950",
+   "iconUrl":"https://bot-framework.azureedge.net/bot-icons-v1/3b24d423-6535-4e55-b34f-da96f81343fe_6Yz4GG12p2JK6bF5gjCVi9NN9dA6ZREHa4oa43zBYC3dqA9Y.png",
+   "endpoints":[
+      {
+         "name":"Power Virtual Agents Skill PROD",
+         "protocol":"BotFrameworkV3",
+         "description":"PROD",
+         "endpointUrl":"https://powervaengine.in-il101.gateway.prod.island.powerapps.com/api/runtime/environments/Default-26afc1b1-8393-439d-aa1a-483105d77dc3/bots/new_bot_3b24d42365354e55b34fda96f81343fe/messages",
+         "msAppId":"a627e2af-94d3-40d1-be50-76a5958fdc36"
+      }
+   ],
+   "activities":{
+      "message":{
+         "type":"message",
+         "description":"Message activity types"
+      }
+   },
+   "dispatchModels":{
+      "languages":{
+         "en":[
+            {
+               "name":"Power Virtual Agents Skill LU English",
+               "contentType":"application/lu",
+               "url":"intents.lu",
+               "description":"English:en language model for the skill"
+            }
+         ]
+      },
+      "intents":[
+         "Test-new_topic_253645ff6ea34256a2f75d24bf95be6a",
+         "Office Timings-new_topic_3b24d42365354e55b34fda96f81343fe_33d5123770ba4daeafae51b361ddc80a",
+         "OTP2-new_topic_7ca6f76fc3ae453a988a237cd477bf2a",
+         "OneDrive-new_topic_1ab00fe01ef84901b5c099f8e9a01986"
+      ]
+   }
+}
