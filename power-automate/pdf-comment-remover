@@ -1,0 +1,20 @@
+Display.InputDialog Title: $'''Folder path''' Message: $'''Please enter your folder path''' InputType: Display.InputType.SingleLine IsTopMost: False UserInput=> UserInput ButtonPressed=> ButtonPressed
+Folder.GetFiles Folder: UserInput FileFilter: $'''*''' IncludeSubfolders: False FailOnAccessDenied: True SortBy1: Folder.SortBy.Name SortDescending1: False SortBy2: Folder.SortBy.Name SortDescending2: True SortBy3: Folder.SortBy.NoSort SortDescending3: False Files=> Files
+LOOP FOREACH CurrentItem IN Files
+    IF EndsWith(CurrentItem, $'''.pdf''', True) THEN
+        System.RunApplication ApplicationPath: CurrentItem WindowStyle: System.ProcessWindowStyle.Maximized ProcessId=> AppProcessId
+    ELSE
+        NEXT LOOP
+    END
+    WAIT 7
+    MouseAndKeyboard.SendKeys TextToSend: $'''{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: True
+    MouseAndKeyboard.MoveMouse X: 1710 Y: 436 RelativeTo: MouseAndKeyboard.PositionRelativeTo.ActiveWindow MovementStyle: MouseAndKeyboard.MovementStyle.Instant
+    MouseAndKeyboard.Click ClickType: MouseAndKeyboard.MouseClickType.LeftClick MillisecondsDelay: 0
+    MouseAndKeyboard.SendKeys TextToSend: $'''{LShiftKey}{End}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: True
+    MouseAndKeyboard.SendKeys TextToSend: $'''{Delete}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: True
+    MouseAndKeyboard.SendKeys TextToSend: $'''{Control}{s}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: True
+    WAIT 1
+    UIAutomation.Windows.GetForegroundWindow WindowTitle=> WindowTitle WindowInstance=> AutomationWindow
+    UIAutomation.Windows.CloseByInstanceOrHandle WindowInstance: AutomationWindow
+    MouseAndKeyboard.SendKeys TextToSend: $'''{Return}''' DelayBetweenKeystrokes: 10 SendTextAsHardwareKeys: True
+END
