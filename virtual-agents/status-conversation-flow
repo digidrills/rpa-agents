@@ -1,0 +1,142 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "status",
+        "what is the status of my files?"
+      ],
+      "dialogId": "new_topic_2211ec06af7c405e906b04f75abb8a98",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_2211ec06af7c405e906b04f75abb8a98",
+      "displayName": "Status",
+      "description": "",
+      "createdTime": "2021-09-15T11:30:15.6964261Z",
+      "updatedTime": "2021-09-16T07:58:48.1927654Z",
+      "createdUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "efddf421-e9fc-470b-9e3f-82fff56f1051",
+      "messageNodes": [
+        {
+          "botMessageId": "0baf01e7-4848-4fa6-8382-903a064b1541",
+          "nodeType": "BotMessageNode",
+          "id": "ae15b4c8-a500-4a69-8836-3d7a6c5f6ace"
+        }
+      ],
+      "actionNodes": [
+        {
+          "outputExpressionVariableIds": [
+            "cd55a340-71e0-438f-90ac-96c3547a4e07"
+          ],
+          "contextVariableId": "3fe5d6f8-c7d9-4974-a5d1-5d2c95fd7288",
+          "nodeType": "ActionNode",
+          "id": "efddf421-e9fc-470b-9e3f-82fff56f1051",
+          "defaultTargetNodeId": "ae15b4c8-a500-4a69-8836-3d7a6c5f6ace"
+        }
+      ],
+      "id": "new_topic_2211ec06af7c405e906b04f75abb8a98",
+      "displayName": "Dialog for Status",
+      "createdTime": "2021-09-15T11:30:15.6964261Z",
+      "updatedTime": "2021-09-16T07:59:51.8395682Z",
+      "createdUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266",
+      "updatedUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "{cd55a340-71e0-438f-90ac-96c3547a4e07}%"
+        }
+      },
+      "id": "0baf01e7-4848-4fa6-8382-903a064b1541",
+      "createdTime": "2021-09-15T11:36:35.181Z",
+      "updatedTime": "2021-09-15T11:36:35.181Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "1e5b0ece-1816-ec11-b6e7-6045bd729fd0",
+        "title": "GettingStatus",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "outputParameters": [
+          {
+            "name": "Stat",
+            "id": "stat",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2021-09-15T11:33:58Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2021-09-15T11:38:13Z",
+        "versionNumber": 0
+      },
+      "id": "f536d8c9-ee20-4d3e-88aa-1800fd8d4e35",
+      "displayName": "GettingStatus",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2021-09-15T11:41:45.481Z",
+      "updatedTime": "2021-09-15T11:41:45.481Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "15653c3c-2e46-406d-8592-08f2164ba0a6",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "f536d8c9-ee20-4d3e-88aa-1800fd8d4e35",
+      "isGlobal": false,
+      "id": "3fe5d6f8-c7d9-4974-a5d1-5d2c95fd7288",
+      "displayName": "",
+      "createdTime": "2021-09-15T11:41:45.481Z",
+      "updatedTime": "2021-09-15T11:41:45.481Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('3fe5d6f8-c7d9-4974-a5d1-5d2c95fd7288')['stat']",
+      "isGlobal": false,
+      "id": "cd55a340-71e0-438f-90ac-96c3547a4e07",
+      "displayName": "Stat",
+      "createdTime": "2021-09-15T11:41:45.481Z",
+      "updatedTime": "2021-09-15T11:41:45.481Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "createdUtc": "0001-01-01T00:00:00Z",
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "15653c3c-2e46-406d-8592-08f2164ba0a6",
+      "displayName": "Response Json Type for Flow - GettingStatus",
+      "createdTime": "2021-09-15T11:41:45.481Z",
+      "updatedTime": "2021-09-15T11:41:45.481Z"
+    }
+  ]
+}
