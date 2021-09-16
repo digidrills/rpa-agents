@@ -1,8 +1,8 @@
 {
    "$schema":"https://schemas.botframework.com/schemas/skills/v2.2/skill-manifest.json",
    "$id":"new_bot_3b24d42365354e55b34fda96f81343fe",
-   "name":"Test_Bot",
-   "version":"2021-09-13T06:42:31.9616086Z",
+   "name":"Invoice Bot",
+   "version":"2021-09-16T10:08:06.8256186Z",
    "description":"Power Virtual Agents manifest",
    "publisherName":"Using Power Virtual Agents",
    "privacyUrl":"https://go.microsoft.com/fwlink/?linkid=2138950",
@@ -35,6 +35,8 @@
       },
       "intents":[
          "Test-new_topic_253645ff6ea34256a2f75d24bf95be6a",
+         "Status-new_topic_2211ec06af7c405e906b04f75abb8a98",
+         "PollingStatus-new_topic_6d4d5cee5ce24ea7b57399cde18b134a",
          "Office Timings-new_topic_3b24d42365354e55b34fda96f81343fe_33d5123770ba4daeafae51b361ddc80a",
          "OTP2-new_topic_7ca6f76fc3ae453a988a237cd477bf2a",
          "OneDrive-new_topic_1ab00fe01ef84901b5c099f8e9a01986"
