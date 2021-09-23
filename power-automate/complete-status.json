@@ -54,20 +54,68 @@
          "actions":{
             "HTTP":{
                "runAfter":{
-                  
+                  "Initialize_variable_3":[
+                     "Succeeded"
+                  ]
                },
                "type":"Http",
                "inputs":{
                   "method":"POST",
-                  "uri":"https://forms-entities.azurewebsites.net/api/orchestrators/FormsOrch?code=Fx39svIrxAmULHmFEi2nnviOi96rvD/Cd8uF/7tkxhYaOtjpQcrxFw==",
+                  "uri":"https://forms-entities.azurewebsites.net/api/orchestrators/invoice_forms_orch?code=BK4LzMdBIHNgmbkvVSW91yHcoul4TgzU6DCXHoxf5zsbHMqtDf7c3A==",
                   "body":{
                      "path":"/Hello/@{triggerBody()['text']}"
                   }
                }
             },
-            "When_a_resource_event_occurs":{
+            "Return_value(s)_to_Power_Virtual_Agents":{
                "runAfter":{
-                  
+                  "Apply_to_each":[
+                     "Succeeded"
+                  ]
+               },
+               "type":"Response",
+               "kind":"VirtualAgent",
+               "inputs":{
+                  "statusCode":200,
+                  "body":{
+                     "response":"@{variables('ProcessedFiles')}/ @{variables('TotalFiles')}  files have been processed  of JobID:@{variables('JobID')}"
+                  },
+                  "schema":{
+                     "type":"object",
+                     "properties":{
+                        "response":{
+                           "title":"Response",
+                           "x-ms-dynamically-added":true,
+                           "type":"string"
+                        }
+                     }
+                  }
+               }
+            },
+            "Initialize_variable_2":{
+               "runAfter":{
+                  "Initialize_variable":[
+                     "Succeeded"
+                  ]
+               },
+               "type":"InitializeVariable",
+               "inputs":{
+                  "variables":[
+                     {
+                        "name":"TotalFiles",
+                        "type":"integer"
+                     }
+                  ]
+               }
+            },
+            "When_a_resource_event_occurs_2":{
+               "runAfter":{
+                  "Initialize_variable_3":[
+                     "Succeeded"
+                  ]
+               },
+               "limit":{
+                  "timeout":"P0Y0M0DT0H5M0S"
                },
                "type":"OpenApiConnectionWebhook",
                "inputs":{
@@ -84,29 +132,121 @@
                   "authentication":"@parameters('$authentication')"
                }
             },
-            "Return_value(s)_to_Power_Virtual_Agents":{
+            "Apply_to_each":{
+               "foreach":"@outputs('When_a_resource_event_occurs_2')?['body']",
+               "actions":{
+                  "Parse_JSON":{
+                     "runAfter":{
+                        
+                     },
+                     "type":"ParseJson",
+                     "inputs":{
+                        "content":"@items('Apply_to_each')?['data']",
+                        "schema":{
+                           "type":"object",
+                           "properties":{
+                              "subject":{
+                                 "type":"string"
+                              },
+                              "eventType":{
+                                 "type":"string"
+                              },
+                              "dataVersion":{
+                                 "type":"string"
+                              },
+                              "data":{
+                                 "type":"object",
+                                 "properties":{
+                                    "current_file":{
+                                       "type":"integer"
+                                    },
+                                    "total_files":{
+                                       "type":"integer"
+                                    },
+                                    "data":{
+                                       "type":"string"
+                                    },
+                                    "jobID":{
+                                       "type":"string"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "Set_variable":{
+                     "runAfter":{
+                        "Parse_JSON":[
+                           "Succeeded"
+                        ]
+                     },
+                     "type":"SetVariable",
+                     "inputs":{
+                        "name":"ProcessedFiles",
+                        "value":"@body('Parse_JSON')?['data']?['current_file']"
+                     }
+                  },
+                  "Set_variable_2":{
+                     "runAfter":{
+                        "Set_variable":[
+                           "Succeeded"
+                        ]
+                     },
+                     "type":"SetVariable",
+                     "inputs":{
+                        "name":"TotalFiles",
+                        "value":"@body('Parse_JSON')?['data']?['total_files']"
+                     }
+                  },
+                  "Set_variable_3":{
+                     "runAfter":{
+                        "Set_variable_2":[
+                           "Succeeded"
+                        ]
+                     },
+                     "type":"SetVariable",
+                     "inputs":{
+                        "name":"JobID",
+                        "value":"@body('Parse_JSON')?['data']?['jobID']"
+                     }
+                  }
+               },
                "runAfter":{
-                  "When_a_resource_event_occurs":[
+                  "When_a_resource_event_occurs_2":[
                      "Succeeded"
                   ]
                },
-               "type":"Response",
-               "kind":"VirtualAgent",
+               "type":"Foreach"
+            },
+            "Initialize_variable":{
+               "runAfter":{
+                  
+               },
+               "type":"InitializeVariable",
                "inputs":{
-                  "statusCode":200,
-                  "body":{
-                     "response":"All your files have been processed!\nThanks for using this bot!"
-                  },
-                  "schema":{
-                     "type":"object",
-                     "properties":{
-                        "response":{
-                           "title":"Response",
-                           "x-ms-dynamically-added":true,
-                           "type":"string"
-                        }
+                  "variables":[
+                     {
+                        "name":"ProcessedFiles",
+                        "type":"integer"
                      }
-                  }
+                  ]
+               }
+            },
+            "Initialize_variable_3":{
+               "runAfter":{
+                  "Initialize_variable_2":[
+                     "Succeeded"
+                  ]
+               },
+               "type":"InitializeVariable",
+               "inputs":{
+                  "variables":[
+                     {
+                        "name":"JobID",
+                        "type":"string"
+                     }
+                  ]
                }
             }
          },
