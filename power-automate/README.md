@@ -25,6 +25,11 @@ Important point to note is that Power automate flow cannot create a folder witho
 So do not be alarmed if the recycle bin contains multiple text.txt files.
 
 ### complete-status.json
-
+This flow initializes two variables at the start, the first one being 'processed files' which stores the number of files already processed and a second variable called 'total files' which stores the total number of files to be processed in the folder.
+The flow then breaks into two paralell branches,
+<br>The left branch sends a HTTP post request to the following URI <br><br><code>https://forms-entities.azurewebsites.net/api/orchestrators/invoice_forms_orch?code=BK4LzMdBIHNgmbkvVSW91yHcoul4TgzU6DCXHoxf5zsbHMqtDf7c3A==</code><br><br>
+The body of this post request contains the folder path of the files to be processed.
+<br>The right branch waits for an event to be published on the Azure Event Grid notifying that a file has been processed. Once it receives an event the event data is parsed to get the files processed and total files. <br>The following message is an example of the message the flow return to the chatbot. 
+<br><code>1/10 files have been processed</code>    
 
 
