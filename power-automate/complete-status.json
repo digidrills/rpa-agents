@@ -70,7 +70,8 @@
             "Return_value(s)_to_Power_Virtual_Agents":{
                "runAfter":{
                   "Apply_to_each":[
-                     "Succeeded"
+                     "Succeeded",
+                     "Skipped"
                   ]
                },
                "type":"Response",
@@ -78,13 +79,19 @@
                "inputs":{
                   "statusCode":200,
                   "body":{
-                     "response":"@{variables('ProcessedFiles')}/ @{variables('TotalFiles')}  files have been processed  of JobID:@{variables('JobID')}"
+                     "response":"@{variables('ProcessedFiles')}/ @{variables('TotalFiles')}  files have been processed  of JobID:@{variables('JobID')}",
+                     "nouploads":"@{variables('TotalFiles')}"
                   },
                   "schema":{
                      "type":"object",
                      "properties":{
                         "response":{
                            "title":"Response",
+                           "x-ms-dynamically-added":true,
+                           "type":"string"
+                        },
+                        "nouploads":{
+                           "title":"NoUploads",
                            "x-ms-dynamically-added":true,
                            "type":"string"
                         }
@@ -115,7 +122,7 @@
                   ]
                },
                "limit":{
-                  "timeout":"P0Y0M0DT0H5M0S"
+                  "timeout":"P0Y0M0DT0H1M25S"
                },
                "type":"OpenApiConnectionWebhook",
                "inputs":{
