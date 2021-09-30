@@ -30,6 +30,9 @@ The flow then breaks into two paralell branches,
 <br>The left branch sends a HTTP post request to the following URI <br><br><code>https://forms-entities.azurewebsites.net/api/orchestrators/invoice_forms_orch?code=BK4LzMdBIHNgmbkvVSW91yHcoul4TgzU6DCXHoxf5zsbHMqtDf7c3A==</code><br><br>
 The body of this post request contains the folder path of the files to be processed.
 <br>The right branch waits for an event to be published on the Azure Event Grid notifying that a file has been processed. Once it receives an event the event data is parsed to get the files processed and total files. <br>The following message is an example of the message the flow return to the chatbot. 
-<br><code>1/10 files have been processed</code>    
+<br><code>1/10 files have been processed</code>  
+
+### recursive.json
+This flow calculates the number of files to be processed by subtracting the total files by the files that are already processed. The flow receives this data from the Azure Event Grid, the body of JSON file receive from the event grid is parsed and the information about the total files and processed files are received from it and stored in separate variables.
 
 
