@@ -54,7 +54,7 @@
          "actions":{
             "HTTP":{
                "runAfter":{
-                  "Initialize_variable_3":[
+                  "Initialize_variable_2":[
                      "Succeeded"
                   ]
                },
@@ -70,8 +70,7 @@
             "Return_value(s)_to_Power_Virtual_Agents":{
                "runAfter":{
                   "Apply_to_each":[
-                     "Succeeded",
-                     "Skipped"
+                     "Succeeded"
                   ]
                },
                "type":"Response",
@@ -79,7 +78,7 @@
                "inputs":{
                   "statusCode":200,
                   "body":{
-                     "response":"@{variables('ProcessedFiles')}/ @{variables('TotalFiles')}  files have been processed  of JobID:@{variables('JobID')}",
+                     "response":"@{variables('ProcessedFiles')}/ @{variables('TotalFiles')}  files have been processed. ",
                      "nouploads":"@{variables('TotalFiles')}"
                   },
                   "schema":{
@@ -115,9 +114,23 @@
                   ]
                }
             },
-            "When_a_resource_event_occurs_2":{
+            "Initialize_variable":{
                "runAfter":{
-                  "Initialize_variable_3":[
+                  
+               },
+               "type":"InitializeVariable",
+               "inputs":{
+                  "variables":[
+                     {
+                        "name":"ProcessedFiles",
+                        "type":"integer"
+                     }
+                  ]
+               }
+            },
+            "When_a_resource_event_occurs":{
+               "runAfter":{
+                  "Initialize_variable_2":[
                      "Succeeded"
                   ]
                },
@@ -140,7 +153,7 @@
                }
             },
             "Apply_to_each":{
-               "foreach":"@outputs('When_a_resource_event_occurs_2')?['body']",
+               "foreach":"@outputs('When_a_resource_event_occurs')?['body']",
                "actions":{
                   "Parse_JSON":{
                      "runAfter":{
@@ -152,109 +165,147 @@
                         "schema":{
                            "type":"object",
                            "properties":{
-                              "subject":{
-                                 "type":"string"
-                              },
-                              "eventType":{
-                                 "type":"string"
-                              },
-                              "dataVersion":{
-                                 "type":"string"
-                              },
-                              "data":{
+                              "headers":{
                                  "type":"object",
                                  "properties":{
-                                    "current_file":{
-                                       "type":"integer"
-                                    },
-                                    "total_files":{
-                                       "type":"integer"
-                                    },
-                                    "data":{
+                                    "Connection":{
                                        "type":"string"
                                     },
-                                    "jobID":{
+                                    "Accept-Encoding":{
+                                       "type":"string"
+                                    },
+                                    "Host":{
+                                       "type":"string"
+                                    },
+                                    "aeg-subscription-name":{
+                                       "type":"string"
+                                    },
+                                    "aeg-delivery-count":{
+                                       "type":"string"
+                                    },
+                                    "aeg-data-version":{
+                                       "type":"string"
+                                    },
+                                    "aeg-metadata-version":{
+                                       "type":"string"
+                                    },
+                                    "aeg-event-type":{
+                                       "type":"string"
+                                    },
+                                    "Content-Length":{
+                                       "type":"string"
+                                    },
+                                    "Content-Type":{
                                        "type":"string"
                                     }
+                                 }
+                              },
+                              "body":{
+                                 "type":"array",
+                                 "items":{
+                                    "type":"object",
+                                    "properties":{
+                                       "id":{
+                                          "type":"string"
+                                       },
+                                       "subject":{
+                                          "type":"string"
+                                       },
+                                       "data":{
+                                          "type":"object",
+                                          "properties":{
+                                             "topic":{
+                                                "type":"string"
+                                             },
+                                             "evt":{
+                                                "type":"string"
+                                             },
+                                             "src":{
+                                                "type":"string"
+                                             },
+                                             "data":{
+                                                "type":"string"
+                                             },
+                                             "current_file":{
+                                                "type":"integer"
+                                             },
+                                             "total_files":{
+                                                "type":"integer"
+                                             }
+                                          }
+                                       },
+                                       "eventType":{
+                                          "type":"string"
+                                       },
+                                       "dataVersion":{
+                                          "type":"string"
+                                       },
+                                       "metadataVersion":{
+                                          "type":"string"
+                                       },
+                                       "eventTime":{
+                                          "type":"string"
+                                       },
+                                       "topic":{
+                                          "type":"string"
+                                       }
+                                    },
+                                    "required":[
+                                       "id",
+                                       "subject",
+                                       "data",
+                                       "eventType",
+                                       "dataVersion",
+                                       "metadataVersion",
+                                       "eventTime",
+                                       "topic"
+                                    ]
                                  }
                               }
                            }
                         }
                      }
                   },
-                  "Set_variable":{
+                  "Apply_to_each_2":{
+                     "foreach":"@outputs('When_a_resource_event_occurs')?['body']",
+                     "actions":{
+                        "Set_variable":{
+                           "runAfter":{
+                              
+                           },
+                           "type":"SetVariable",
+                           "inputs":{
+                              "name":"ProcessedFiles",
+                              "value":"@items('Apply_to_each_2')?['data']?['current_file']"
+                           }
+                        },
+                        "Set_variable_2":{
+                           "runAfter":{
+                              "Set_variable":[
+                                 "Succeeded"
+                              ]
+                           },
+                           "type":"SetVariable",
+                           "inputs":{
+                              "name":"TotalFiles",
+                              "value":"@items('Apply_to_each_2')?['data']?['total_files']"
+                           }
+                        }
+                     },
                      "runAfter":{
                         "Parse_JSON":[
                            "Succeeded"
                         ]
                      },
-                     "type":"SetVariable",
-                     "inputs":{
-                        "name":"ProcessedFiles",
-                        "value":"@body('Parse_JSON')?['data']?['current_file']"
-                     }
-                  },
-                  "Set_variable_2":{
-                     "runAfter":{
-                        "Set_variable":[
-                           "Succeeded"
-                        ]
-                     },
-                     "type":"SetVariable",
-                     "inputs":{
-                        "name":"TotalFiles",
-                        "value":"@body('Parse_JSON')?['data']?['total_files']"
-                     }
-                  },
-                  "Set_variable_3":{
-                     "runAfter":{
-                        "Set_variable_2":[
-                           "Succeeded"
-                        ]
-                     },
-                     "type":"SetVariable",
-                     "inputs":{
-                        "name":"JobID",
-                        "value":"@body('Parse_JSON')?['data']?['jobID']"
-                     }
+                     "type":"Foreach"
                   }
                },
                "runAfter":{
-                  "When_a_resource_event_occurs_2":[
+                  "When_a_resource_event_occurs":[
                      "Succeeded"
                   ]
                },
                "type":"Foreach"
-            },
-            "Initialize_variable":{
-               "runAfter":{
-                  
-               },
-               "type":"InitializeVariable",
-               "inputs":{
-                  "variables":[
-                     {
-                        "name":"ProcessedFiles",
-                        "type":"integer"
-                     }
-                  ]
-               }
-            },
-            "Initialize_variable_3":{
-               "runAfter":{
-                  "Initialize_variable_2":[
-                     "Succeeded"
-                  ]
-               },
-               "type":"InitializeVariable",
-               "inputs":{
-                  "variables":[
-                     {
-                        "name":"JobID",
-                        "type":"string"
-                     }
-                  ]
-               }
             }
          },
          "outputs":{
