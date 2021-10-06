@@ -17,7 +17,7 @@
       "displayName": "OneDrive",
       "description": "Shows the user where to upload the files.",
       "createdTime": "2021-08-31T07:54:14.6644677Z",
-      "updatedTime": "2021-09-23T11:55:30.6356722Z",
+      "updatedTime": "2021-09-30T07:04:45.6288276Z",
       "createdUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266",
       "updatedUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266"
     }
@@ -70,38 +70,31 @@
           "nodeType": "BotMessageNode",
           "id": "da865950-011d-4ae2-8464-974984cdf1d8",
           "defaultTargetNodeId": "a871c17e-8070-4e7c-8004-168c6ceead8c"
+        },
+        {
+          "botMessageId": "6e14ed44-22e1-4913-82e1-18d859d61b39",
+          "nodeType": "BotMessageNode",
+          "id": "972379e2-281c-413e-a038-5bf59fc14e41"
         }
       ],
       "actionNodes": [
         {
+          "contextVariableId": "df3f9b29-1939-44db-af98-b34236028e72",
+          "nodeType": "ActionNode",
           "outputExpressionVariableIds": [
             "6222c0d4-3eea-47e2-b8a3-d2ac1e6cb70a",
             "2d349db2-e9c4-488d-be17-3a5fad4c853c"
           ],
-          "contextVariableId": "df3f9b29-1939-44db-af98-b34236028e72",
-          "nodeType": "ActionNode",
           "id": "680ed233-4fd9-4155-8d88-5db8cf4abc7a",
           "defaultTargetNodeId": "650e3101-08ae-42c5-bb6a-9ce21854c37f"
         },
         {
-          "inputParameterVariableIdMap": {
-            "text": "{2d349db2-e9c4-488d-be17-3a5fad4c853c}"
-          },
-          "outputExpressionVariableIds": [
-            "f41a2d58-03bd-4196-8415-cdc5359081c4"
-          ],
-          "contextVariableId": "54e4bdd0-cd3b-46a5-a26a-364871a24d9c",
+          "contextVariableId": "5586ed3e-8b4a-43fb-a3c1-1dff4e756b78",
           "nodeType": "ActionNode",
-          "id": "a37e1489-785e-4048-9764-1684de2d743d",
-          "defaultTargetNodeId": "a9138575-1e88-400a-b0e2-33cc18ee9cdb"
-        },
-        {
           "outputExpressionVariableIds": [
             "1616c6b1-ae9a-415e-aa8f-0a23193c9e9b",
             "060bc0fa-39af-42f2-abda-78503fad5652"
           ],
-          "contextVariableId": "5586ed3e-8b4a-43fb-a3c1-1dff4e756b78",
-          "nodeType": "ActionNode",
           "id": "a871c17e-8070-4e7c-8004-168c6ceead8c",
           "routes": [
             {
@@ -110,6 +103,25 @@
             }
           ],
           "defaultTargetNodeId": "da865950-011d-4ae2-8464-974984cdf1d8"
+        },
+        {
+          "contextVariableId": "c35744c9-06df-403a-a986-0bfe094ceff4",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{2d349db2-e9c4-488d-be17-3a5fad4c853c}"
+          },
+          "outputExpressionVariableIds": [
+            "bdb20662-53a4-4b9f-a4dd-c821479856c7",
+            "af3e8e4a-7244-4323-b211-7b3e8a4ae120"
+          ],
+          "id": "bccff507-0699-48b0-b1dc-bb99cc7ccf37",
+          "routes": [
+            {
+              "expression": "@equals(parameters('af3e8e4a-7244-4323-b211-7b3e8a4ae120'), '0')",
+              "targetNodeId": "972379e2-281c-413e-a038-5bf59fc14e41"
+            }
+          ],
+          "defaultTargetNodeId": "a9138575-1e88-400a-b0e2-33cc18ee9cdb"
         }
       ],
       "questionNodes": [
@@ -120,7 +132,7 @@
           "routes": [
             {
               "expression": "@equals(parameters('3a27643d-d3e4-43be-bf7b-7308bd62f64d'), '05fc7f3f-fb3f-4808-b44a-3dd979122651')",
-              "targetNodeId": "a37e1489-785e-4048-9764-1684de2d743d"
+              "targetNodeId": "bccff507-0699-48b0-b1dc-bb99cc7ccf37"
             },
             {
               "expression": "@equals(parameters('3a27643d-d3e4-43be-bf7b-7308bd62f64d'), 'f8638417-f1c5-47b4-9b60-e83b278b119a')",
@@ -133,7 +145,7 @@
       "id": "new_topic_1ab00fe01ef84901b5c099f8e9a01986",
       "displayName": "Dialog for OneDrive",
       "createdTime": "2021-08-31T07:54:14.6644677Z",
-      "updatedTime": "2021-09-27T08:58:36.0661193Z",
+      "updatedTime": "2021-10-06T09:54:47.3027342Z",
       "createdUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266",
       "updatedUserId": "f8b103eb-d85b-4d76-bdaa-ec0a66b20266"
     }
@@ -182,7 +194,7 @@
       "channelContent": {
         "web": {
           "contentFormat": "Markdown",
-          "content": "{f41a2d58-03bd-4196-8415-cdc5359081c4}"
+          "content": "{bdb20662-53a4-4b9f-a4dd-c821479856c7}"
         }
       },
       "id": "559b2b7e-33c9-4831-80d7-c6a5676c05bf",
@@ -208,7 +220,7 @@
       "channelContent": {
         "web": {
           "contentFormat": "Markdown",
-          "content": "All files have been processed"
+          "content": "All files have been processed!  \nPlease go back to the link and review the processed files in the 'results' folder."
         }
       },
       "id": "cd50ac06-5d36-4e40-b784-224de307731e",
@@ -227,6 +239,19 @@
       "id": "c4b5e72e-3b9c-4e83-b66a-1dafc198c2bc",
       "createdTime": "2021-09-27T08:57:50.203Z",
       "updatedTime": "2021-09-27T08:57:50.203Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "No files were uploaded to the folder."
+        }
+      },
+      "id": "6e14ed44-22e1-4913-82e1-18d859d61b39",
+      "createdTime": "2021-09-30T07:04:15.882Z",
+      "updatedTime": "2021-09-30T07:04:15.882Z",
       "createdUserId": "user-0",
       "updatedUserId": "user-0"
     }
@@ -279,48 +304,6 @@
       "headers": {
         "accept": "application/json"
       },
-      "bodyContent": "{\"text\":\"{2d349db2-e9c4-488d-be17-3a5fad4c853c}\"}",
-      "actionType": "Flow",
-      "flowMetadata": {
-        "id": "fabe8c5d-6511-ec11-b6e7-000d3af0db79",
-        "title": "Complete_Status",
-        "description": "Call this flow from Power Virtual Agents.",
-        "httpMethod": 2,
-        "inputParameters": [
-          {
-            "name": "folder",
-            "id": "text",
-            "type": "String",
-            "optional": false
-          }
-        ],
-        "outputParameters": [
-          {
-            "name": "Response",
-            "id": "response",
-            "type": "String",
-            "optional": true
-          }
-        ],
-        "outputSchemaType": "Json",
-        "createdTime": "2021-09-09T11:59:25Z",
-        "isEnabled": true,
-        "lastModifiedTime": "2021-09-19T10:39:27Z",
-        "versionNumber": 0
-      },
-      "id": "d0043897-056d-4735-af8e-95a2b5cc2148",
-      "displayName": "Complete_Status",
-      "description": "Call this flow from Power Virtual Agents.",
-      "createdTime": "2021-09-19T10:41:00.068Z",
-      "updatedTime": "2021-09-19T10:41:00.068Z"
-    },
-    {
-      "timeoutInSeconds": 60,
-      "retryCount": 1,
-      "method": 2,
-      "headers": {
-        "accept": "application/json"
-      },
       "bodyContent": "",
       "actionType": "Flow",
       "flowMetadata": {
@@ -353,6 +336,54 @@
       "description": "Call this flow from Power Virtual Agents.",
       "createdTime": "2021-09-27T08:57:10.09Z",
       "updatedTime": "2021-09-27T08:57:10.09Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{2d349db2-e9c4-488d-be17-3a5fad4c853c}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "fabe8c5d-6511-ec11-b6e7-000d3af0db79",
+        "title": "Complete_Status",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "folder",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "Response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          },
+          {
+            "name": "NoUploads",
+            "id": "nouploads",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2021-09-09T11:59:25Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2021-09-30T07:01:55Z",
+        "versionNumber": 0
+      },
+      "id": "7523315c-ccb6-4d67-b901-f1891934ede4",
+      "displayName": "Complete_Status",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2021-09-30T07:02:28.839Z",
+      "updatedTime": "2021-09-30T07:02:28.839Z"
     }
   ],
   "contextVariables": [
@@ -429,38 +460,6 @@
       "updatedUserId": "user-0"
     },
     {
-      "customTypeId": "4fcc5464-f022-45e9-befd-3c5527f69f08",
-      "initializerType": "Action",
-      "scope": "Dialog",
-      "greedySlotFillingEnabled": false,
-      "isInput": false,
-      "externalInitializationAllowed": false,
-      "actionId": "d0043897-056d-4735-af8e-95a2b5cc2148",
-      "isGlobal": false,
-      "id": "54e4bdd0-cd3b-46a5-a26a-364871a24d9c",
-      "displayName": "",
-      "createdTime": "2021-09-19T10:41:00.068Z",
-      "updatedTime": "2021-09-19T10:41:00.068Z",
-      "createdUserId": "user-0",
-      "updatedUserId": "user-0"
-    },
-    {
-      "systemType": "String",
-      "initializerType": "Expression",
-      "scope": "Dialog",
-      "greedySlotFillingEnabled": false,
-      "isInput": false,
-      "externalInitializationAllowed": false,
-      "expression": "@parameters('54e4bdd0-cd3b-46a5-a26a-364871a24d9c')['response']",
-      "isGlobal": false,
-      "id": "f41a2d58-03bd-4196-8415-cdc5359081c4",
-      "displayName": "Response",
-      "createdTime": "2021-09-19T10:41:00.068Z",
-      "updatedTime": "2021-09-19T10:41:00.068Z",
-      "createdUserId": "user-0",
-      "updatedUserId": "user-0"
-    },
-    {
       "customTypeId": "ba185d16-58d0-43d5-8951-17ca7e07a8f7",
       "initializerType": "Action",
       "scope": "Dialog",
@@ -507,9 +506,56 @@
       "updatedTime": "2021-09-27T08:57:10.098Z",
       "createdUserId": "user-0",
       "updatedUserId": "user-0"
+    },
+    {
+      "customTypeId": "51c0aa89-e676-473e-8d1a-3ccc70af79ba",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "7523315c-ccb6-4d67-b901-f1891934ede4",
+      "isGlobal": false,
+      "id": "c35744c9-06df-403a-a986-0bfe094ceff4",
+      "displayName": "",
+      "createdTime": "2021-09-30T07:02:28.84Z",
+      "updatedTime": "2021-09-30T07:02:28.84Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('c35744c9-06df-403a-a986-0bfe094ceff4')['response']",
+      "isGlobal": false,
+      "id": "bdb20662-53a4-4b9f-a4dd-c821479856c7",
+      "displayName": "Response1",
+      "createdTime": "2021-09-30T07:02:28.84Z",
+      "updatedTime": "2021-09-30T07:02:28.84Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('c35744c9-06df-403a-a986-0bfe094ceff4')['nouploads']",
+      "isGlobal": false,
+      "id": "af3e8e4a-7244-4323-b211-7b3e8a4ae120",
+      "displayName": "NoUploads",
+      "createdTime": "2021-09-30T07:02:28.843Z",
+      "updatedTime": "2021-09-30T07:02:28.843Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
     }
   ],
-  "createdUtc": "0001-01-01T00:00:00Z",
   "jsonTypes": [
     {
       "customTypeSchema": "Json",
@@ -520,17 +566,17 @@
     },
     {
       "customTypeSchema": "Json",
-      "id": "4fcc5464-f022-45e9-befd-3c5527f69f08",
-      "displayName": "Response Json Type for Flow - Complete_Status",
-      "createdTime": "2021-09-19T10:41:00.068Z",
-      "updatedTime": "2021-09-19T10:41:00.068Z"
-    },
-    {
-      "customTypeSchema": "Json",
       "id": "ba185d16-58d0-43d5-8951-17ca7e07a8f7",
       "displayName": "Response Json Type for Flow - Recursive",
       "createdTime": "2021-09-27T08:57:10.092Z",
       "updatedTime": "2021-09-27T08:57:10.092Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "51c0aa89-e676-473e-8d1a-3ccc70af79ba",
+      "displayName": "Response Json Type for Flow - Complete_Status",
+      "createdTime": "2021-09-30T07:02:28.84Z",
+      "updatedTime": "2021-09-30T07:02:28.84Z"
     }
   ]
 }
