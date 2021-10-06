@@ -49,7 +49,10 @@
             "Return_value(s)_to_Power_Virtual_Agents":{
                "runAfter":{
                   "Set_variable_3":[
-                     "Succeeded"
+                     "Succeeded",
+                     "Skipped",
+                     "Failed",
+                     "TimedOut"
                   ]
                },
                "type":"Response",
@@ -57,7 +60,7 @@
                "inputs":{
                   "statusCode":200,
                   "body":{
-                     "ttl":"@{variables('Processed')}/@{variables('Total')} files have been processed",
+                     "ttl":"@{variables('Processed')}/@{variables('Total')} files have been processed.",
                      "filesleft":"@{variables('Files_Left')}"
                   },
                   "schema":{
@@ -133,7 +136,7 @@
                   ]
                },
                "limit":{
-                  "timeout":"P0Y0M0DT0H1M30S"
+                  "timeout":"P0Y0M0DT0H1M20S"
                },
                "type":"OpenApiConnectionWebhook",
                "inputs":{
@@ -163,59 +166,139 @@
                         "schema":{
                            "type":"object",
                            "properties":{
-                              "subject":{
-                                 "type":"string"
-                              },
-                              "eventType":{
-                                 "type":"string"
-                              },
-                              "dataVersion":{
-                                 "type":"string"
-                              },
-                              "data":{
+                              "headers":{
                                  "type":"object",
                                  "properties":{
-                                    "current_file":{
-                                       "type":"integer"
-                                    },
-                                    "total_files":{
-                                       "type":"integer"
-                                    },
-                                    "data":{
+                                    "Connection":{
                                        "type":"string"
                                     },
-                                    "jobID":{
+                                    "Accept-Encoding":{
+                                       "type":"string"
+                                    },
+                                    "Host":{
+                                       "type":"string"
+                                    },
+                                    "aeg-subscription-name":{
+                                       "type":"string"
+                                    },
+                                    "aeg-delivery-count":{
+                                       "type":"string"
+                                    },
+                                    "aeg-data-version":{
+                                       "type":"string"
+                                    },
+                                    "aeg-metadata-version":{
+                                       "type":"string"
+                                    },
+                                    "aeg-event-type":{
+                                       "type":"string"
+                                    },
+                                    "Content-Length":{
+                                       "type":"string"
+                                    },
+                                    "Content-Type":{
                                        "type":"string"
                                     }
+                                 }
+                              },
+                              "body":{
+                                 "type":"array",
+                                 "items":{
+                                    "type":"object",
+                                    "properties":{
+                                       "id":{
+                                          "type":"string"
+                                       },
+                                       "subject":{
+                                          "type":"string"
+                                       },
+                                       "data":{
+                                          "type":"object",
+                                          "properties":{
+                                             "topic":{
+                                                "type":"string"
+                                             },
+                                             "evt":{
+                                                "type":"string"
+                                             },
+                                             "src":{
+                                                "type":"string"
+                                             },
+                                             "data":{
+                                                "type":"string"
+                                             },
+                                             "current_file":{
+                                                "type":"integer"
+                                             },
+                                             "total_files":{
+                                                "type":"integer"
+                                             }
+                                          }
+                                       },
+                                       "eventType":{
+                                          "type":"string"
+                                       },
+                                       "dataVersion":{
+                                          "type":"string"
+                                       },
+                                       "metadataVersion":{
+                                          "type":"string"
+                                       },
+                                       "eventTime":{
+                                          "type":"string"
+                                       },
+                                       "topic":{
+                                          "type":"string"
+                                       }
+                                    },
+                                    "required":[
+                                       "id",
+                                       "subject",
+                                       "data",
+                                       "eventType",
+                                       "dataVersion",
+                                       "metadataVersion",
+                                       "eventTime",
+                                       "topic"
+                                    ]
                                  }
                               }
                            }
                         }
                      }
                   },
-                  "Set_variable":{
+                  "Apply_to_each_2":{
+                     "foreach":"@outputs('When_a_resource_event_occurs')?['body']",
+                     "actions":{
+                        "Set_variable":{
+                           "runAfter":{
+                              
+                           },
+                           "type":"SetVariable",
+                           "inputs":{
+                              "name":"Processed",
+                              "value":"@items('Apply_to_each_2')?['data']?['current_file']"
+                           }
+                        },
+                        "Set_variable_2":{
+                           "runAfter":{
+                              "Set_variable":[
+                                 "Succeeded"
+                              ]
+                           },
+                           "type":"SetVariable",
+                           "inputs":{
+                              "name":"Total",
+                              "value":"@items('Apply_to_each_2')?['data']?['total_files']"
+                           }
+                        }
+                     },
                      "runAfter":{
                         "Parse_JSON":[
                            "Succeeded"
                         ]
                      },
-                     "type":"SetVariable",
-                     "inputs":{
-                        "name":"Processed",
-                        "value":"@body('Parse_JSON')?['data']?['current_file']"
-                     }
-                  },
-                  "Set_variable_2":{
-                     "runAfter":{
-                        "Set_variable":[
-                           "Succeeded"
-                        ]
-                     },
-                     "type":"SetVariable",
-                     "inputs":{
-                        "name":"Total",
-                        "value":"@body('Parse_JSON')?['data']?['total_files']"
-                     }
+                     "type":"Foreach"
                   }
                },
                "runAfter":{
@@ -228,7 +311,9 @@
             "Set_variable_3":{
                "runAfter":{
                   "Apply_to_each":[
-                     "Succeeded"
+                     "Succeeded",
+                     "Skipped",
+                     "Failed"
                   ]
                },
                "type":"SetVariable",
