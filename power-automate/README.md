@@ -1,3 +1,7 @@
+## Importing a cloud flow
+To import a cloud flow to power automate web, first login and go to 'my flows'. Search for the import button and upload the zip file containing the flow (Only zip files can be uploaded). After uploading you will be asked to review package contents, depending on the situation you can either update an already existing flow or create a new one. Then you will need to select the connections to connectors such as blob storage, Microsoft Teams, etc. Only then will you be able to import the flow.
+
+## File descriptions
 ### pdf-comment-remover.txt
 This code is used to automate the removal of comments in a PDF.
 To run this file you should install Power Automate Desktop. It can be downloaded here for free (<https://flow.microsoft.com/en-us/desktop/>). 
