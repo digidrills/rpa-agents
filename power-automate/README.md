@@ -39,4 +39,14 @@ The body of this post request contains the folder path of the files to be proces
 ### recursive
 This flow calculates the number of files to be processed by subtracting the total files by the files that are already processed. The flow receives this data from the Azure Event Grid, the body of JSON file receive from the event grid is parsed and the information about the total files and processed files are received from it and stored in separate variables.
 
+### list-calendar-events
+When the keyword 'events' is mentioned on the general channel of the Recruitment Team on Microsoft Teams a list of all calendar events that have taken place and will take place are displayed along with the date of the event.
+
+### list-channels
+When the keyword 'list' is mentioned on the general channel of the Recruitment Team on Microsoft Teams a list of all channels within the Recruitment Team is displayed.
+
+### schedule-meetings
+When the keyword 'meeting' is mentioned on 'Test Group Chat 1', a meeting is created on Microsoft Teams and is scheduled to start in exactly one hour.
+
+
 
